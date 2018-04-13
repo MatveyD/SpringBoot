@@ -12,5 +12,9 @@ public interface LibService {
      * @return user
      */
     User getUserById(Long id);
+
     List<User> getAll();
+
+    int createUser(User user);
+
 }

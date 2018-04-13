@@ -21,6 +21,7 @@ public class LibDaoImpl implements LibDAO{
 
     private static final String GET_USERS_BY_ID = "SELECT * FROM users WHERE id=?";
     private static final String GET_ALL_USERS ="SELECT * FROM users";
+    private static final String CREATE_NEW_USER = "INSERT INTO users (id, login, name) VALUES (nextval('users_seq'),?,?)";
 
     @Override
     public User getUserById(Long id) {
@@ -32,5 +33,10 @@ public class LibDaoImpl implements LibDAO{
     public List<User> getAll() {
         List <User> users = jdbcOperations.query(GET_ALL_USERS, new BeanPropertyRowMapper<User>(User.class));
         return !users.isEmpty() ? users: null;
+    }
+
+    @Override
+    public int createUser(User user) {
+        return jdbcOperations.update(CREATE_NEW_USER, user.getLogin(), user.getName());
     }
 }

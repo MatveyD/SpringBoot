@@ -30,4 +30,9 @@ public class LibServiceImpl implements LibService{
     public List<User> getAll() {
         return libDao.getAll();
     }
+
+    @Override
+    public int createUser(User user) {
+        return libDao.createUser(user);
+    }
 }
